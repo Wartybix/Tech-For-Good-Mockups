@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.LocationOn
@@ -35,6 +37,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
@@ -42,7 +45,14 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.techforgoodmockups.ui.theme.CustomColor1
 import com.example.techforgoodmockups.ui.theme.TechForGoodMockupsTheme
+import com.example.techforgoodmockups.ui.theme.dark_CustomColor1
+import com.example.techforgoodmockups.ui.theme.dark_onCustomColor1
+import com.example.techforgoodmockups.ui.theme.light_CustomColor1
+import com.example.techforgoodmockups.ui.theme.light_CustomColor1Container
+import com.example.techforgoodmockups.ui.theme.light_onCustomColor1
+import com.example.techforgoodmockups.ui.theme.light_onCustomColor1Container
 import com.example.techforgoodmockups.ui.theme.mediumPriority
 
 class MainActivity : ComponentActivity() {
@@ -257,6 +267,52 @@ fun MapView() {
     }
 }
 
+@Composable
+fun DrivingMode() {
+    Box {
+        Image(
+            bitmap = ImageBitmap.imageResource(R.drawable.driving_mode),
+            contentDescription = null,
+        )
+        Surface(
+            color = light_CustomColor1Container,
+            modifier = Modifier
+                .padding(start = 44.dp, top = 320.dp)
+                .clip(
+                    RoundedCornerShape(
+                        topStart = 16.dp,
+                        topEnd = 16.dp,
+                        bottomStart = 16.dp
+                    )
+                )
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .padding(vertical = 8.dp, horizontal = 16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Warning,
+                    contentDescription = null,
+                    tint = light_onCustomColor1Container,
+                    modifier = Modifier
+                        .size(24.dp)
+                )
+
+                Spacer(Modifier.size(12.dp))
+
+                Text(
+                    text = "Pothole",
+                    style = MaterialTheme.typography.titleLarge,
+                    color = light_onCustomColor1Container,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+        }
+    }
+}
+
 @Preview
 @Composable
 fun CouncilViewPreview() {
@@ -270,5 +326,13 @@ fun CouncilViewPreview() {
 fun MapViewPreview() {
     TechForGoodMockupsTheme {
         MapView()
+    }
+}
+
+@Preview
+@Composable
+fun DrivingModePreview() {
+    TechForGoodMockupsTheme {
+        DrivingMode()
     }
 }
